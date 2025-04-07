@@ -6,15 +6,20 @@
 #include <vector>
 
 #include <hip/hip_runtime.h>
+#if HIP_VERSION_MAJOR >= 6
+// the location of rocm_version.h changed in HIP/ROCm 6.0
+#include <rocm-core/rocm_version.h>
+#else
 #include <rocm_version.h>
+#endif  // HIP_VERSION_MAJOR
 #include <rocm_smi/rocm_smi.h>
 
+#include "FWCore/AbstractServices/interface/ResourceInformation.h"
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 #include "FWCore/ParameterSet/interface/ConfigurationDescriptions.h"
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/ParameterSet/interface/ParameterSetDescription.h"
 #include "FWCore/ServiceRegistry/interface/Service.h"
-#include "FWCore/Utilities/interface/ResourceInformation.h"
 #include "HeterogeneousCore/ROCmServices/interface/ROCmInterface.h"
 #include "HeterogeneousCore/ROCmUtilities/interface/hipCheck.h"
 #include "HeterogeneousCore/ROCmUtilities/interface/rsmiCheck.h"
